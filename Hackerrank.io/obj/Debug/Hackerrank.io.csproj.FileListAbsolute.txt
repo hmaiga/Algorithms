@@ -1,1 +1,6 @@
 D:\Users\Housseini Maiga\Github\Data Structures and Algorithms\Algorithms\Hackerrank.io\bin\Debug\Hackerrank.io.exe.config
+D:\Users\Housseini Maiga\Github\Data Structures and Algorithms\Algorithms\Hackerrank.io\bin\Debug\Hackerrank.io.exe
+D:\Users\Housseini Maiga\Github\Data Structures and Algorithms\Algorithms\Hackerrank.io\bin\Debug\Hackerrank.io.pdb
+D:\Users\Housseini Maiga\Github\Data Structures and Algorithms\Algorithms\Hackerrank.io\obj\Debug\Hackerrank.io.csprojResolveAssemblyReference.cache
+D:\Users\Housseini Maiga\Github\Data Structures and Algorithms\Algorithms\Hackerrank.io\obj\Debug\Hackerrank.io.exe
+D:\Users\Housseini Maiga\Github\Data Structures and Algorithms\Algorithms\Hackerrank.io\obj\Debug\Hackerrank.io.pdb
