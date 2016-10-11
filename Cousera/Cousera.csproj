@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A00EF914-4C32-40A4-9A86-13187DC8E588}</ProjectGuid>
+    <ProjectGuid>{907B2918-8CA8-4B2D-BC51-D7FF219DF55F}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Hackerrank.io</RootNamespace>
-    <AssemblyName>Hackerrank.io</AssemblyName>
+    <RootNamespace>Cousera</RootNamespace>
+    <AssemblyName>Cousera</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,21 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Hackerrank.cs" />
-    <Compile Include="KruskalAlgorithm\Edge.cs" />
-    <Compile Include="KruskalAlgorithm\Graph.cs" />
-    <Compile Include="KruskalAlgorithm\Kruskal.cs" />
-    <Compile Include="KruskalAlgorithm\KruskalHelper.cs" />
-    <Compile Include="KruskalAlgorithm\Subset.cs" />
-    <Compile Include="KruskalAlgorithm\Vertex.cs" />
+    <Compile Include="Coursera.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="MSTTest.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

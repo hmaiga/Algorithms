@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 
-[assembly: AssemblyTitle("Hackerrank.io")]
+[assembly: AssemblyTitle("Cousera")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Hackerrank.io")]
+[assembly: AssemblyProduct("Cousera")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -22,7 +22,7 @@ using System.Runtime.InteropServices;
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
 
-[assembly: Guid("a00ef914-4c32-40a4-9a86-13187dc8e588")]
+[assembly: Guid("907b2918-8ca8-4b2d-bc51-d7ff219df55f")]
 
 // Version information for an assembly consists of the following four values:
 //

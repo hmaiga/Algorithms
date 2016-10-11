@@ -1,122 +1,82 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using Hackerrank.io.KruskalAlgorithm;
 
 namespace Hackerrank.io
 {
-    class Program
+    internal class Program
     {
-        protected static int SequentialSearch(int[] flag, int e)
+        private static void Main(string[] args)
         {
-            var arrayLength = flag.Length;
-            var index = 0;
-            do
-            {
-                index++;
-            } while (index < flag.Length && flag[index] != e);
-            if (index < arrayLength)
-            {
-                return index;
-            }
+            var k = 1;
+            //vertexNum => Denoting the number of nodes(vertices:sommets) in the graph
+            var vertexNum = 4;
+            var e = 0;
+            //Graph and vertices number initialization
+            var graphObject = new Graph(vertexNum);
+            var verterCollection = graphObject.VertexCollection;
+            var result = new Edge[vertexNum];
 
-            return -1;
-        }
+            //initialize collection for storing created edges.
+            var edgeCollection = new List<Edge>();
+            var edgeObj = new Edge();
 
-        protected static int BinarySearch(int[] flag, int e)
-        {
-            //Diviser pour mieux regner
-            var leftSide = 0;
-            var rightSide = flag.Length;
-            var index = (rightSide + leftSide) / 2;
-            do
+            for (var i = 0; i < vertexNum; i++)
             {
-                if (e < flag[index])
+                for (var j = 0; j < vertexNum; j++)
                 {
-                    rightSide = index - 1;
-                }
-                else
-                {
-                    leftSide = index + 1;
-                }
-                index = (rightSide + leftSide) / 2;
-            } while (e != flag[index] && leftSide <= rightSide);
-
-            if (e == flag[index])
-            {
-                return index;
-            }
-            return -1;
-        }
-
-        private static int Partition(int[] myArray, int leftSide, int rightSide)
-        {
-            int pivot = myArray[rightSide];
-            int i = leftSide - 1;
-            for (int j = leftSide; j < rightSide; j++)
-            {
-                if (myArray[j] <= pivot)
-                {
-                    i++;
-                    int tmp = myArray[i];
-                    myArray[i] = myArray[j];
-                    myArray[j] = tmp;
-                }
-            }
-            int index = i + 1;
-            int flag = myArray[index];
-            myArray[index] = myArray[rightSide];
-            myArray[rightSide] = flag;
-
-            return index;
-        }
-
-        protected static int[] QuickSort(int[] myArray, int leftSide, int rightSide)
-        {
-            if (leftSide < rightSide)
-            {
-                int pivot = Partition(myArray, leftSide, rightSide);
-                QuickSort(myArray, leftSide, pivot - 1);
-                QuickSort(myArray, pivot + 1, rightSide);
-            }
-
-            return myArray;
-        }
-
-        public static int GetMatchedCouples(int[] myArray, int n, int k)
-        {
-            int count = 0;
-            for (var i = 0; i < n; i++)
-            {
-                for (int j = i; j < n; j++)
-                {
-                    if ((myArray[i] + myArray[j]) / k == 0)
+                    if (i != j)
                     {
-                        count++;
+                        Console.Write(
+                            $"Type edge weight from source_{KruskalHelper.ConvertToText(i)} to destination_{KruskalHelper.ConvertToText(j)} : ");
+                        var weight = Convert.ToInt32(Console.ReadLine());
+                        if (weight == 0)
+                        {
+                            continue;
+                        }
+
+                        edgeObj = new Edge(verterCollection[i], verterCollection[j], weight);
+                        edgeCollection.Add(edgeObj);
+                        k++;
+                        //Console.Write("\n");
                     }
                 }
             }
-            return count;
-        }
 
-        private static Tuple<DateTime, DateTime> GetDay(DateTime currentDate)
-        {
-            var map = new Dictionary<System.DayOfWeek, Tuple<DateTime, DateTime>>()
+            graphObject.EdgeCollection = edgeCollection.ToList().OrderBy(p => p.Weight).ToList();
+
+            var sub = new Subset[vertexNum];
+            Subset subobj;
+            for (var i = 0; i < vertexNum; i++)
             {
-                {System.DayOfWeek.Monday, new Tuple<DateTime, DateTime>(currentDate, currentDate.AddDays(6)) },
-                {System.DayOfWeek.Tuesday, new Tuple<DateTime, DateTime>(currentDate.AddDays(-1), currentDate.AddDays(5)) },
-                {System.DayOfWeek.Wednesday, new Tuple<DateTime, DateTime>(currentDate.AddDays(-2), currentDate.AddDays(4))},
-                {System.DayOfWeek.Thursday, new Tuple<DateTime, DateTime>(currentDate.AddDays(-3), currentDate.AddDays(3)) },
-                {System.DayOfWeek.Friday, new Tuple<DateTime, DateTime>(currentDate.AddDays(-4), currentDate.AddDays(2)) },
-                {System.DayOfWeek.Saturday,  new Tuple<DateTime, DateTime>(currentDate.AddDays(-5), currentDate.AddDays(1)) },
-                {System.DayOfWeek.Sunday, new Tuple<DateTime, DateTime>(currentDate.AddDays(-6), currentDate) },
-            };
-            Tuple<DateTime, DateTime> output;
-            map.TryGetValue(currentDate.DayOfWeek, out output);
-            return output;
-        }
+                subobj = new Subset();
+                subobj.ParentVertex = verterCollection[i];
+                subobj.Rank = 0;
+                sub[i] = subobj;
+            }
+            k = 0;
+            while (e < vertexNum - 1)
+            {
+                edgeObj = graphObject.EdgeCollection.ElementAt(k);
+                var x = KruskalHelper.Find(sub, edgeObj.FirstVertex,
+                    Array.IndexOf(graphObject.VertexCollection, edgeObj.FirstVertex), verterCollection);
+                var y = KruskalHelper.Find(sub, edgeObj.SecondVertex,
+                    Array.IndexOf(graphObject.VertexCollection, edgeObj.SecondVertex), verterCollection);
+                if (x != y)
+                {
+                    result[e] = edgeObj;
+                    KruskalHelper.Union(sub, x, y, graphObject.VertexCollection);
+                    e++;
+                }
+                k++;
+            }
 
-        static void Main(string[] args)
-        {
-            int[] myArray = new[] {10, 20, 20, 10, 10, 30, 50, 10, 20};
+            for (var i = 0; i < e; i++)
+            {
+                Console.WriteLine(
+                    $"edge from source: {result[i].FirstVertex.Label} to destination: {result[i].SecondVertex.Label} with weight:{result[i].Weight}");
+            }
 
             Console.ReadKey();
         }

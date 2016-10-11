@@ -4,15 +4,14 @@ using System.Linq;
 
 namespace ProjectEuler
 {
-    class Program
+    internal class Program
     {
         private static void Multiple(int n)
         {
-
             var count = 0;
             for (var i = 1; i < n + 1; i++)
             {
-                if (i % 3 == 0 || i % 5 == 0 && i % 15 != 0)
+                if (i%3 == 0 || i%5 == 0 && i%15 != 0)
                 {
                     count += i;
                 }
@@ -40,9 +39,9 @@ namespace ProjectEuler
             //n=28
             for (var i = 2; i < Math.Sqrt(n); i++)
             {
-                while (n % i == 0)
+                while (n%i == 0)
                 {
-                    n = n / 2;
+                    n = n/2;
                 }
             }
 
@@ -55,9 +54,9 @@ namespace ProjectEuler
             var a = q + 1;
             double b = 0;
             var bCarre = Math.Pow(a, 2) - n;
-            var deuxAplusUn = 2 * a + 1;
+            var deuxAplusUn = 2*a + 1;
             var cpt = 0;
-            while (Math.Abs(Math.Pow((int)Math.Sqrt(bCarre), 2) - bCarre) != 0)
+            while (Math.Abs(Math.Pow((int) Math.Sqrt(bCarre), 2) - bCarre) != 0)
             {
                 bCarre += deuxAplusUn;
                 deuxAplusUn = deuxAplusUn + 2;
@@ -84,7 +83,7 @@ namespace ProjectEuler
                 //Console.WriteLine(squareSum);
             }
             counter = Math.Pow(squareSum, 2) - sumSquare;
-            optimizeCounter = Math.Pow(n, 2) * Math.Pow(n + 1, 2) * 1 / 4 + n * (n + 1) * (2 * n + 1) * 1 / 6;
+            optimizeCounter = Math.Pow(n, 2)*Math.Pow(n + 1, 2)*1/4 + n*(n + 1)*(2*n + 1)*1/6;
             return new Tuple<double, double>(counter, optimizeCounter);
         }
 
@@ -96,7 +95,7 @@ namespace ProjectEuler
             {
                 for (var j = 1; j <= n; j++)
                 {
-                    if (x % j == 0)
+                    if (x%j == 0)
                     {
                         counter = x;
                     }
@@ -118,7 +117,7 @@ namespace ProjectEuler
                 isPrime = true;
                 while (Math.Pow(primes[j], 2) <= i)
                 {
-                    if (i % primes[j] == 0)
+                    if (i%primes[j] == 0)
                     {
                         isPrime = false;
                         break;
@@ -135,7 +134,7 @@ namespace ProjectEuler
 
         private static double SmallestPrimeFactor(int n)
         {
-            var primeFactor = new List<int> { 2, 3, 5, 7, 11, 13, 17, 19, 23 };
+            var primeFactor = new List<int> {2, 3, 5, 7, 11, 13, 17, 19, 23};
             var stockPrimeFactor = new List<int>();
             double counter = 0;
             for (var i = 2; i <= n; i++)
@@ -145,9 +144,9 @@ namespace ProjectEuler
                 var j = 0;
                 while (i >= 2)
                 {
-                    if (i % 2 == 0 && i != 0)
+                    if (i%2 == 0 && i != 0)
                     {
-                        flag = i / 2;
+                        flag = i/2;
                         j++;
                     }
                     else
@@ -164,7 +163,7 @@ namespace ProjectEuler
             return counter;
         }
 
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
         }
     }
